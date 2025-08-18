@@ -1,17 +1,17 @@
+#include <string>
 #include <vector>
 
 using namespace std;
 
-vector<vector<int>> solution(vector<vector<int>> Matrix1, vector<vector<int>> Matrix2) {
-    vector<vector<int>> answer;
-    for (int i = 0; i < Matrix1.size(); i++)
+vector<vector<int>> solution(vector<vector<int>> arr1, vector<vector<int>> arr2) {
+    vector<vector<int>> answer(arr1.size());
+    for (int i = 0; i < arr1.size(); i++)
     {
-        vector<int> arr;
-        for (int j = 0; j < Matrix1[i].size(); j++)
+        for (int j = 0; j < arr1[i].size(); j++)
         {
-            arr.push_back(Matrix1[i][j] + Matrix2[i][j]);
+            int sum = arr1[i][j] + arr2[i][j];
+            answer[i].push_back(sum);
         }
-        answer.push_back(arr);
     }
     return answer;
 }
