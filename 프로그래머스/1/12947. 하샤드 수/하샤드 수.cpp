@@ -4,18 +4,18 @@
 using namespace std;
 
 bool solution(int x) {
-    bool answer = false;
+    bool answer = true;
     int sum = 0;
     int n = x;
-    while(n)
+    while (n)
     {
         sum += n % 10;
         n /= 10;
     }
     
-    if(x % sum == 0)
+    if (x % sum != 0)
     {
-        answer = true;
+        answer = false;
     }
     
     return answer;
