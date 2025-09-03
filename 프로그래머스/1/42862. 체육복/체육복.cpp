@@ -1,34 +1,35 @@
+#include <string>
 #include <vector>
 
 using namespace std;
 
 int solution(int n, vector<int> lost, vector<int> reserve) {
     int answer = 0;
-    vector<int> result(n, 1);
+    vector<int> uniforms(n, 1);
     
-    for (int i : lost) result[i - 1]--;
-    for (int i : reserve) result[i - 1]++;
+    for (int l : lost) uniforms[l - 1]--;
+    for (int r : reserve) uniforms[r - 1]++;
     
-    for (int i = 0; i < result.size(); i++)
+    for (int i = 0; i < uniforms.size(); i++)
     {
-        if (!result[i])
+        if (!uniforms[i])
         {
-            if (i > 0 &&result[i - 1] == 2)
+            if (uniforms[i - 1] == 2 && 0 < i)
             {
-                result[i]++;
-                result[i - 1]--;
+                uniforms[i]++;
+                uniforms[i - 1]--;
             }
-            else if (i < result.size() - 1 && result[i + 1] == 2)
+            else if (uniforms[i + 1] == 2 && i < uniforms.size() - 1)
             {
-                result[i]++;
-                result[i + 1]--;
+                uniforms[i]++;
+                uniforms[i + 1]--;
             }
         }
     }
     
-    for (int i : result)
+    for (int i : uniforms)
     {
-        if (i > 0)
+        if (0 < i)
         {
             answer++;
         }
