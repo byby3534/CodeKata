@@ -1,33 +1,42 @@
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
-int main() {
-	int N, v, max, min;
-	int i = 0;
-	while (cin >> N)
-	{
-		int* arr = new int[N];
-		for (int i = 0; i < N; i++)
-		{
-			cin >> v;
-			arr[i] = v;
-		}
-
-		max = arr[0];
-		min = arr[0];
-		for (int i = 1; i < N; i++)
-		{
-			if (max < arr[i])
-				max = arr[i];
-
-			if (min > arr[i])
-				min = arr[i];
-		}
-		cout << min << " ";
-		cout << max << "\n";
-
-		delete[]arr;
-	}
-	return 0;
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    
+    // n개의 정수
+    int N;
+    int num;
+    
+    cin >> N;
+    cin >> num;
+    
+    int my_max = num;
+    int my_min = num;
+    
+    for (int i = 0; i < N - 1; ++i)
+    {
+        cin >> num;
+        
+        // 함수X
+        /*if (my_max < num)
+        {
+            my_max = num;
+        }
+        
+        if (my_min > num)
+        {
+            my_min = num;
+        }*/
+        
+        // 함수O
+        my_max = max(my_max, num);
+        my_min = min(my_min, num);
+    }
+    
+    cout << my_min << " " << my_max;
 }
