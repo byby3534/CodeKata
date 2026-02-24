@@ -1,33 +1,43 @@
 #include <iostream>
-#include <algorithm>
+#include <unordered_map>
 #include <vector>
+#include <algorithm>
+#include <string>
+
+#define endl '\n';
 
 using namespace std;
+
+int n, m;
+unordered_map<string, int> mp;
+int cnt;
 
 int main()
 {
 	ios_base::sync_with_stdio(false);
-	cin.tie(nullptr);
+	cin.tie(NULL);
+	cout.tie(NULL);
 
-	int n, m, count = 0;
-	string s;
-	vector<string> v;
 	cin >> n >> m;
+
+	// NlogN 삽입 시
 	for (int i = 0; i < n; i++)
 	{
+		string s;
 		cin >> s;
-		v.push_back(s);
+		mp[s]++;
 	}
 
-	sort(v.begin(), v.end());
+	// MlogN 탐색 시
 	for (int i = 0; i < m; i++)
 	{
+		string s;
 		cin >> s;
-		if (binary_search(v.begin(), v.end(), s))
+		if (mp.count(s))
 		{
-			count++;
+			cnt++;
 		}
 	}
-	cout << count;
-	return 0;
+
+	cout << cnt;
 }
